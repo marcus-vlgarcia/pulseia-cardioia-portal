@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #263b4f;
+  background: #f5f8fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --font-display: 'Manrope', 'DM Sans', sans-serif;
+  --canvas: #f5f8fa;
+  --navy: #102a43;
+  --ink: #263b4f;
+  --muted: #71808e;
+  --teal: #1da99a;
+  --teal-dark: #087769;
+  --mint: #39d0bd;
+  --coral: #d85c62;
+  --line: #e3e9ee;
+  --line-strong: #ced8df;
+  --radius-lg: 1.1rem;
+  --radius-xl: 1.25rem;
+  --shadow-sm: 0 0.55rem 1.6rem rgba(28, 52, 72, 0.055);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--canvas);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(29, 169, 154, 0.3);
+  outline-offset: 2px;
+}
+
+.page-container {
+  width: min(100%, 92rem);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3.2rem);
+}
+
+.primary-button {
+  min-height: 2.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  color: white;
+  border-radius: 0.78rem;
+  background: var(--navy);
+  box-shadow: 0 0.65rem 1.5rem rgba(16, 42, 67, 0.14);
+  font-size: 0.82rem;
+  font-weight: 800;
+  transition: 160ms ease;
+}
+
+.primary-button:hover {
+  background: #183d5c;
+  transform: translateY(-1px);
+}
+
+.error-banner {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  color: #9b363e;
+  border: 1px solid #ffd5d2;
+  border-radius: 0.85rem;
+  background: #fff0ef;
+  font-size: 0.82rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

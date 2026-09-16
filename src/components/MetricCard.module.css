@@ -1,0 +1,67 @@
+.card {
+  min-height: 11rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.85rem;
+}
+
+.arrow {
+  color: var(--muted);
+}
+
+.card strong {
+  display: block;
+  margin-top: 1rem;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 650;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.label {
+  margin-top: 0.35rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.card small {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.mint .icon {
+  color: #087769;
+  background: #ddf8f3;
+}
+
+.blue .icon {
+  color: #286a9f;
+  background: #e8f3fb;
+}
+
+.coral .icon {
+  color: #b9484e;
+  background: #fff0ef;
+}

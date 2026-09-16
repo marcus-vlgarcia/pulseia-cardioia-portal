@@ -1,0 +1,171 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(19rem, 0.78fr) minmax(0, 1.22fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.agenda {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.agendaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.agendaHeader > div > span {
+  color: var(--muted);
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.agendaHeader h2 {
+  margin: 0.3rem 0 0;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.agendaHeader select {
+  min-height: 2.55rem;
+  padding: 0 0.7rem;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 0.7rem;
+  background: white;
+}
+
+.list {
+  padding: 0 1.35rem;
+}
+
+.appointment {
+  display: grid;
+  grid-template-columns: 6.3rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.appointment:last-child {
+  border-bottom: 0;
+}
+
+.when strong,
+.when span {
+  display: block;
+}
+
+.when strong {
+  color: var(--navy);
+  font-size: 0.78rem;
+  text-transform: capitalize;
+}
+
+.when span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  color: var(--teal-dark);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.details h3,
+.details p,
+.details small {
+  margin: 0;
+}
+
+.details h3 {
+  color: var(--navy);
+  font-size: 0.9rem;
+}
+
+.details p {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  color: #526a80;
+  font-size: 0.76rem;
+}
+
+.details small {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.appointment > button {
+  min-height: 2.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 0.75rem;
+  color: var(--navy);
+  border: 1px solid var(--line-strong);
+  border-radius: 0.7rem;
+  background: white;
+  font-size: 0.73rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.appointment > button:hover {
+  color: var(--teal-dark);
+  border-color: var(--teal);
+  background: #f3fbf9;
+}
+
+.empty {
+  min-height: 15rem;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.empty svg {
+  color: var(--teal);
+}
+
+@media (max-width: 1120px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .appointment {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment > button {
+    width: 100%;
+  }
+}

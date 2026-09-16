@@ -1,0 +1,33 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.low,
+.confirmed {
+  color: #087165;
+  background: #ddf8f3;
+}
+
+.moderate,
+.pending {
+  color: #945b08;
+  background: #fff3d8;
+}
+
+.high {
+  color: #a43f46;
+  background: #ffe9e8;
+}
+
+.neutral {
+  color: #52606d;
+  background: #eef2f5;
+}

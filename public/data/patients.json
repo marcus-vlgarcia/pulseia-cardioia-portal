@@ -1,0 +1,14 @@
+[
+  {"id": 1, "name": "Ana Martins", "age": 58, "sex": "Feminino", "phone": "(11) 99821-4020", "condition": "Hipertensão", "risk": "moderado", "lastVisit": "2026-09-12", "status": "Em acompanhamento"},
+  {"id": 2, "name": "Carlos Henrique", "age": 66, "sex": "Masculino", "phone": "(11) 99143-8821", "condition": "Arritmia", "risk": "alto", "lastVisit": "2026-09-10", "status": "Atenção"},
+  {"id": 3, "name": "Beatriz Souza", "age": 43, "sex": "Feminino", "phone": "(11) 98920-1158", "condition": "Avaliação preventiva", "risk": "baixo", "lastVisit": "2026-09-08", "status": "Estável"},
+  {"id": 4, "name": "João Pedro Lima", "age": 51, "sex": "Masculino", "phone": "(11) 98770-3104", "condition": "Angina de esforço", "risk": "moderado", "lastVisit": "2026-09-05", "status": "Em acompanhamento"},
+  {"id": 5, "name": "Lúcia Ferreira", "age": 72, "sex": "Feminino", "phone": "(11) 98311-7684", "condition": "Insuficiência cardíaca", "risk": "alto", "lastVisit": "2026-09-02", "status": "Atenção"},
+  {"id": 6, "name": "Rafael Gomes", "age": 39, "sex": "Masculino", "phone": "(11) 98176-2290", "condition": "Avaliação preventiva", "risk": "baixo", "lastVisit": "2026-08-29", "status": "Estável"},
+  {"id": 7, "name": "Maria Helena", "age": 64, "sex": "Feminino", "phone": "(11) 99244-5183", "condition": "Hipertensão", "risk": "moderado", "lastVisit": "2026-08-24", "status": "Em acompanhamento"},
+  {"id": 8, "name": "Paulo Roberto", "age": 55, "sex": "Masculino", "phone": "(11) 99650-0472", "condition": "Palpitações", "risk": "moderado", "lastVisit": "2026-08-20", "status": "Em investigação"},
+  {"id": 9, "name": "Clara Nunes", "age": 47, "sex": "Feminino", "phone": "(11) 98207-6391", "condition": "Dislipidemia", "risk": "baixo", "lastVisit": "2026-08-18", "status": "Estável"},
+  {"id": 10, "name": "Eduardo Castro", "age": 69, "sex": "Masculino", "phone": "(11) 99014-2735", "condition": "Pós-infarto", "risk": "alto", "lastVisit": "2026-08-14", "status": "Atenção"},
+  {"id": 11, "name": "Juliana Alves", "age": 34, "sex": "Feminino", "phone": "(11) 98571-3460", "condition": "Avaliação preventiva", "risk": "baixo", "lastVisit": "2026-08-11", "status": "Estável"},
+  {"id": 12, "name": "Antônio Mendes", "age": 61, "sex": "Masculino", "phone": "(11) 99704-1258", "condition": "Hipertensão", "risk": "moderado", "lastVisit": "2026-08-07", "status": "Em acompanhamento"}
+]

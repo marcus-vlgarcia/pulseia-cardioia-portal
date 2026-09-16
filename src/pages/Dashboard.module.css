@@ -1,0 +1,221 @@
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(19rem, 0.75fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.35rem 1.35rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.panelHeader span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panelHeader h2 {
+  margin: 0.28rem 0 0;
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+.panelHeader a {
+  color: var(--teal-dark);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.panelHeader > svg {
+  color: var(--teal-dark);
+}
+
+.appointmentList {
+  padding: 0 1.35rem;
+}
+
+.appointment {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.appointment:last-child {
+  border-bottom: 0;
+}
+
+.dateTile {
+  width: 2.9rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  border-radius: 0.75rem;
+  color: var(--navy);
+  background: var(--canvas);
+}
+
+.dateTile strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.dateTile span {
+  margin-top: 0.18rem;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.appointmentInfo,
+.appointmentInfo strong,
+.appointmentInfo span {
+  min-width: 0;
+  display: block;
+}
+
+.appointmentInfo strong {
+  overflow: hidden;
+  color: var(--navy);
+  font-size: 0.86rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appointmentInfo span {
+  margin-top: 0.22rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.riskBars {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.4rem;
+}
+
+.riskRow > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+  color: var(--navy);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.track {
+  height: 0.55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf1f4;
+}
+
+.track span {
+  min-width: 0.3rem;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  transition: width 400ms ease;
+}
+
+.track .low { background: var(--teal); }
+.track .moderate { background: #e9ad42; }
+.track .high { background: var(--coral); }
+
+.modelNote {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0 1.35rem 1.35rem;
+  padding: 1rem;
+  color: #38566f;
+  border-radius: 0.9rem;
+  background: #f0f7fb;
+}
+
+.modelNote svg {
+  flex: 0 0 auto;
+  color: #397ba7;
+}
+
+.modelNote p,
+.modelNote strong {
+  display: block;
+  margin: 0;
+}
+
+.modelNote p {
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.modelNote strong {
+  margin-bottom: 0.18rem;
+  color: var(--navy);
+}
+
+@media (max-width: 1120px) {
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .appointment > :last-child {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .appointment {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .time,
+  .appointment > :last-child {
+    grid-column: 2;
+  }
+}
