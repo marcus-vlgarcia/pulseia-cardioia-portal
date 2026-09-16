@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 
 const STORAGE_KEY = 'cardioia.appointments'
 const initialAppointments = [
@@ -46,7 +46,7 @@ function loadAppointments() {
 function appointmentReducer(state, action) {
   switch (action.type) {
     case 'ADD': {
-      const next = [{ ...action.payload, id: crypto.randomUUID() }, ...state]
+      const next = [{ ...action.payload, id: action.payload.id ?? crypto.randomUUID() }, ...state]
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
       return next
     }
@@ -76,13 +76,76 @@ export function AppointmentProvider({ children }) {
     loadAppointments,
   )
 
+  const addAppointment = useCallback((appointment) => {
+    const nextAppointment = { ...appointment, id: appointment.id ?? crypto.randomUUID() }
+    dispatch({ type: 'ADD', payload: nextAppointment })
+    return nextAppointment
+  }, [])
+
+  useEffect(() => {
+    const context = document.modelContext
+    if (!context?.registerTool) return undefined
+
+    const lifecycle = new AbortController()
+    const registration = context.registerTool(
+      {
+        name: 'create_appointment',
+        title: 'Agendar consulta no CardioIA',
+        description: 'Cria um agendamento simulado e o inclui na agenda visível do portal.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            patient: { type: 'string', minLength: 2 },
+            date: { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
+            time: { type: 'string', pattern: '^\\d{2}:\\d{2}$' },
+            doctor: { type: 'string' },
+            type: { type: 'string' },
+            notes: { type: 'string' },
+          },
+          required: ['patient', 'date', 'time'],
+          additionalProperties: false,
+        },
+        annotations: { readOnlyHint: false, untrustedContentHint: false },
+        execute(input) {
+          if (
+            !input ||
+            typeof input.patient !== 'string' ||
+            !/^\d{4}-\d{2}-\d{2}$/.test(input.date) ||
+            !/^\d{2}:\d{2}$/.test(input.time)
+          ) {
+            throw new Error('Paciente, data e horário válidos são obrigatórios.')
+          }
+
+          const appointment = addAppointment({
+            patient: input.patient.trim(),
+            date: input.date,
+            time: input.time,
+            doctor: input.doctor?.trim() || 'Dra. Marina Alves',
+            type: input.type?.trim() || 'Avaliação cardiológica',
+            notes: input.notes?.trim() || '',
+            status: 'Pendente',
+          })
+
+          return { id: appointment.id, status: appointment.status }
+        },
+      },
+      { signal: lifecycle.signal },
+    )
+
+    void Promise.resolve(registration).catch((error) => {
+      console.warn('Não foi possível registrar a ferramenta do portal.', error)
+    })
+
+    return () => lifecycle.abort()
+  }, [addAppointment])
+
   const value = useMemo(
     () => ({
       appointments,
-      addAppointment: (appointment) => dispatch({ type: 'ADD', payload: appointment }),
+      addAppointment,
       toggleStatus: (id) => dispatch({ type: 'TOGGLE_STATUS', payload: id }),
     }),
-    [appointments],
+    [addAppointment, appointments],
   )
 
   return <AppointmentContext.Provider value={value}>{children}</AppointmentContext.Provider>

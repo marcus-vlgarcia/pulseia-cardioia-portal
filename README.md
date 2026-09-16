@@ -78,9 +78,9 @@ Os pacientes estão em `public/data/patients.json`. Nomes, telefones, condiçõe
 
 | Integrante | RM |
 | --- | --- |
-| Erik Criscuolo | Preencher RM |
-| Marcus Vinícius Loureiro Garcia | Preencher RM |
-| Sidney William de Paula Dias | Preencher RM |
+| Erik Criscuolo | RMXXXXXX |
+| Marcus Vinícius Loureiro Garcia | RM567283 |
+| Sidney William de Paula Dias | RMXXXXXX |
 
 ## Vídeo de demonstração
 
