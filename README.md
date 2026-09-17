@@ -32,9 +32,9 @@ acadêmico e não realiza diagnóstico médico.
 
 ## 👨‍🎓 Integrantes
 
-- Erik Criscuolo — `RMXXXXXX`
+- Erik Criscuolo — `RM566484`
 - [Marcus Vinícius Loureiro Garcia](https://www.linkedin.com/in/marcusvlgarcia/) — `RM567283`
-- [Sidney William de Paula Dias](https://www.linkedin.com/in/sidneywilliamdepaula/) — `RMXXXXXX`
+- [Sidney William de Paula Dias](https://www.linkedin.com/in/sidneywilliamdepaula/) — `RM568142`
 
 ## 👩‍🏫 Professores
 
