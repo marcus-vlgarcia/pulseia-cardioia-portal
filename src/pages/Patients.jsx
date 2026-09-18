@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Search, SlidersHorizontal, UserRound } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import StatusBadge from '../components/StatusBadge'
 import { getPatients } from '../services/patientService'
@@ -98,13 +99,13 @@ export default function Patients() {
                 {filteredPatients.map((patient) => (
                   <tr key={patient.id}>
                     <td>
-                      <span className={styles.patientName}>
+                      <Link className={styles.patientName} to={`/pacientes/${patient.id}`} aria-label={`Ver ficha de ${patient.name}`}>
                         <span className={styles.patientAvatar}>{patient.name.charAt(0)}</span>
                         <span>
                           <strong>{patient.name}</strong>
-                          <small>{patient.phone}</small>
+                          <small>{patient.phone} · Ver ficha</small>
                         </span>
-                      </span>
+                      </Link>
                     </td>
                     <td>{patient.age} anos</td>
                     <td>{patient.condition}</td>

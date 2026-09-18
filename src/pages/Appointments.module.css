@@ -101,6 +101,19 @@
   font-size: 0.9rem;
 }
 
+.personLink {
+  color: var(--navy);
+  font-size: .9rem;
+  font-weight: 800;
+}
+
+.details p .personLink {
+  color: var(--teal-dark);
+  font-size: inherit;
+}
+
+.personLink:hover { text-decoration: underline; }
+
 .details p {
   display: flex;
   align-items: center;

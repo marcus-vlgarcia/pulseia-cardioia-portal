@@ -1,0 +1,59 @@
+[
+  {
+    "id": "marina-alves",
+    "name": "Dra. Marina Alves",
+    "initials": "MA",
+    "specialty": "Cardiologia clínica",
+    "crm": "CRM-SP 000000 · simulado",
+    "role": "Acompanhamento clínico e retornos",
+    "room": "Consultório 03",
+    "phone": "Ramal 204",
+    "email": "marina.alves@cardioia.demo",
+    "availability": "Agenda aberta para retornos",
+    "bio": "Profissional fictícia criada exclusivamente para a demonstração acadêmica do portal.",
+    "consultations": ["Primeira consulta", "Retorno", "Avaliação preventiva"],
+    "schedule": [
+      { "day": "Segunda-feira", "hours": "08:00–12:00 · 13:30–17:30" },
+      { "day": "Quarta-feira", "hours": "08:00–12:00 · 13:30–17:30" },
+      { "day": "Sexta-feira", "hours": "08:00–12:00" }
+    ]
+  },
+  {
+    "id": "ricardo-melo",
+    "name": "Dr. Ricardo Melo",
+    "initials": "RM",
+    "specialty": "Arritmologia",
+    "crm": "CRM-SP 000001 · simulado",
+    "role": "Avaliações de ritmo cardíaco",
+    "room": "Consultório 05",
+    "phone": "Ramal 218",
+    "email": "ricardo.melo@cardioia.demo",
+    "availability": "Agenda aberta para avaliações",
+    "bio": "Profissional fictício criado exclusivamente para a demonstração acadêmica do portal.",
+    "consultations": ["Avaliação cardiológica", "Primeira consulta", "Retorno"],
+    "schedule": [
+      { "day": "Terça-feira", "hours": "09:00–12:00 · 14:00–18:00" },
+      { "day": "Quinta-feira", "hours": "09:00–12:00 · 14:00–18:00" },
+      { "day": "Sábado", "hours": "09:00–12:00" }
+    ]
+  },
+  {
+    "id": "camila-torres",
+    "name": "Dra. Camila Torres",
+    "initials": "CT",
+    "specialty": "Cardiologia preventiva",
+    "crm": "CRM-SP 000002 · simulado",
+    "role": "Prevenção e estratificação de risco",
+    "room": "Consultório 02",
+    "phone": "Ramal 211",
+    "email": "camila.torres@cardioia.demo",
+    "availability": "Agenda aberta para prevenção",
+    "bio": "Profissional fictícia criada exclusivamente para a demonstração acadêmica do portal.",
+    "consultations": ["Avaliação preventiva", "Primeira consulta", "Retorno"],
+    "schedule": [
+      { "day": "Segunda-feira", "hours": "13:00–18:00" },
+      { "day": "Terça-feira", "hours": "08:00–12:00" },
+      { "day": "Quinta-feira", "hours": "13:00–18:00" }
+    ]
+  }
+]

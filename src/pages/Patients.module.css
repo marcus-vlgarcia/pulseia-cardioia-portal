@@ -99,6 +99,10 @@
   gap: 0.72rem;
 }
 
+.patientName:hover strong {
+  color: var(--teal-dark);
+}
+
 .patientAvatar {
   width: 2.45rem;
   height: 2.45rem;

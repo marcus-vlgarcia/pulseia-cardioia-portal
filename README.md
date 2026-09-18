@@ -21,7 +21,8 @@ acadêmico e não realiza diagnóstico médico.
 | --- | --- |
 | Autenticação simulada | Context API e JWT fictício armazenado no `localStorage` |
 | Proteção de rotas | `AuthContext`, `ProtectedRoute` e React Router |
-| Listagem de pacientes | Serviço que consome a base JSON local simulada |
+| Listagem e fichas de pacientes | Serviço que consome a base JSON local simulada |
+| Corpo clínico | Lista de médicos fictícios, fichas e horários demonstrativos |
 | Formulário de consultas | Estado controlado com `useReducer` e `useState` |
 | Dashboard | Contagem de pacientes, consultas e perfis prioritários |
 | Estilização | CSS Modules, design responsivo e componentes reutilizáveis |
@@ -53,10 +54,11 @@ Nesta atividade complementar, o grupo assume o desenvolvimento da camada de
 Front-End do portal, aplicando conceitos de componentização, navegação,
 autenticação simulada e manipulação de estado com Hooks avançados.
 
-A interface possui três áreas protegidas:
+A interface possui quatro áreas protegidas:
 
 - **Visão geral:** apresenta métricas da base simulada e as próximas consultas;
 - **Pacientes:** exibe registros fictícios com busca e filtro por nível de risco;
+- **Médicos:** apresenta profissionais fictícios, especialidades, contatos e horários demonstrativos;
 - **Agendamentos:** permite cadastrar consultas, alterar o status e manter os
   dados no navegador.
 
@@ -68,6 +70,8 @@ A interface possui três áreas protegidas:
 - carregamento assíncrono dos pacientes com `useEffect`;
 - busca por nome ou condição acompanhada;
 - filtro de pacientes por risco baixo, moderado ou alto;
+- fichas individuais de pacientes com dados cadastrais e histórico simulado;
+- fichas profissionais com horários, especialidades e tipos de atendimento simulados;
 - formulário de agendamento controlado com `useReducer`;
 - agenda compartilhada por Context API;
 - persistência local dos agendamentos;
@@ -103,12 +107,13 @@ autenticação e aos dados simulados.
 pulseia-cardioia-portal/
 ├── public/
 │   ├── data/
-│   │   └── patients.json        # Base local de pacientes fictícios
+│   │   ├── patients.json        # Base local de pacientes fictícios
+│   │   └── doctors.json         # Base local de médicos fictícios
 │   └── favicon.svg
 ├── src/
 │   ├── components/              # Layout, cards, formulário e componentes comuns
 │   ├── contexts/                # AuthContext e AppointmentContext
-│   ├── pages/                   # Login, dashboard, pacientes e agendamentos
+│   ├── pages/                   # Login, dashboard, fichas, pacientes, médicos e agenda
 │   ├── services/                # Autenticação fake e consumo do JSON
 │   ├── styles/                  # Estilos globais
 │   ├── App.jsx                  # Definição das rotas

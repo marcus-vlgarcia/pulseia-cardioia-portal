@@ -6,6 +6,7 @@ import {
   LogOut,
   Menu,
   ShieldCheck,
+  Stethoscope,
   UsersRound,
   X,
 } from 'lucide-react'
@@ -17,6 +18,7 @@ import styles from './AppLayout.module.css'
 const navigation = [
   { to: '/', label: 'Visão geral', icon: LayoutDashboard, end: true },
   { to: '/pacientes', label: 'Pacientes', icon: UsersRound },
+  { to: '/medicos', label: 'Médicos', icon: Stethoscope },
   { to: '/agendamentos', label: 'Agendamentos', icon: CalendarDays },
 ]
 

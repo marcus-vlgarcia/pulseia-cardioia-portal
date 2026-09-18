@@ -100,13 +100,16 @@
   display: block;
 }
 
-.appointmentInfo strong {
+.appointmentInfo strong,
+.appointmentInfo a {
   overflow: hidden;
   color: var(--navy);
   font-size: 0.86rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.appointmentInfo a:hover { color: var(--teal-dark); }
 
 .appointmentInfo span {
   margin-top: 0.22rem;

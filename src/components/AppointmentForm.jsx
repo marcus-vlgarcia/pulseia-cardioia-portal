@@ -23,7 +23,7 @@ function formReducer(state, action) {
   }
 }
 
-export default function AppointmentForm({ patients }) {
+export default function AppointmentForm({ patients, doctors = [] }) {
   const [form, dispatch] = useReducer(formReducer, initialForm)
   const [message, setMessage] = useState('')
   const { addAppointment } = useAppointments()
@@ -63,9 +63,9 @@ export default function AppointmentForm({ patients }) {
       <label className={styles.full}>
         <span>Profissional</span>
         <select name="doctor" value={form.doctor} onChange={updateField} required>
-          <option>Dra. Marina Alves</option>
-          <option>Dr. Ricardo Melo</option>
-          <option>Dra. Camila Torres</option>
+          {(doctors.length ? doctors : [{ name: 'Dra. Marina Alves' }, { name: 'Dr. Ricardo Melo' }, { name: 'Dra. Camila Torres' }]).map((doctor) => (
+            <option key={doctor.name}>{doctor.name}</option>
+          ))}
         </select>
       </label>
 

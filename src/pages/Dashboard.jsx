@@ -36,6 +36,7 @@ export default function Dashboard() {
   const sortedAppointments = [...appointments].sort((a, b) =>
     `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`),
   )
+  const patientIdsByName = new Map(patients.map((patient) => [patient.name, patient.id]))
 
   return (
     <div className="page-container">
@@ -94,7 +95,9 @@ export default function Dashboard() {
                   <span>SET</span>
                 </div>
                 <div className={styles.appointmentInfo}>
-                  <strong>{appointment.patient}</strong>
+                  {patientIdsByName.has(appointment.patient) ? (
+                    <Link to={`/pacientes/${patientIdsByName.get(appointment.patient)}`}>{appointment.patient}</Link>
+                  ) : <strong>{appointment.patient}</strong>}
                   <span>{appointment.type}</span>
                 </div>
                 <span className={styles.time}><Clock3 size={15} /> {appointment.time}</span>

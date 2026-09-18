@@ -8,3 +8,8 @@ export async function getPatients(signal) {
 
   return response.json()
 }
+
+export async function getPatientById(id, signal) {
+  const patients = await getPatients(signal)
+  return patients.find((patient) => String(patient.id) === String(id)) ?? null
+}

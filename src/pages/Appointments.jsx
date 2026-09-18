@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { CalendarClock, CheckCircle2, Clock3, Stethoscope } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import AppointmentForm from '../components/AppointmentForm'
 import PageHeader from '../components/PageHeader'
 import StatusBadge from '../components/StatusBadge'
 import { useAppointments } from '../contexts/AppointmentContext'
 import { getPatients } from '../services/patientService'
+import { getDoctorIdByName, getDoctors } from '../services/doctorService'
 import styles from './Appointments.module.css'
 
 function formatDate(date) {
@@ -17,12 +19,14 @@ function formatDate(date) {
 
 export default function Appointments() {
   const [patients, setPatients] = useState([])
+  const [doctors, setDoctors] = useState([])
   const [filter, setFilter] = useState('todas')
   const { appointments, toggleStatus } = useAppointments()
 
   useEffect(() => {
     const controller = new AbortController()
     getPatients(controller.signal).then(setPatients).catch(() => {})
+    getDoctors(controller.signal).then(setDoctors).catch(() => {})
     return () => controller.abort()
   }, [])
 
@@ -41,7 +45,7 @@ export default function Appointments() {
       />
 
       <section className={styles.grid}>
-        <AppointmentForm patients={patients} />
+        <AppointmentForm patients={patients} doctors={doctors} />
 
         <article className={styles.agenda}>
           <div className={styles.agendaHeader}>
@@ -65,28 +69,34 @@ export default function Appointments() {
                 <CalendarClock size={30} />
                 <strong>Nenhum agendamento neste filtro</strong>
               </div>
-            ) : visibleAppointments.map((appointment) => (
-              <article className={styles.appointment} key={appointment.id}>
+            ) : visibleAppointments.map((appointment) => {
+              const patient = patients.find((item) => item.name === appointment.patient)
+              const doctorId = getDoctorIdByName(appointment.doctor)
+              return (
+                <article className={styles.appointment} key={appointment.id}>
                 <div className={styles.when}>
                   <strong>{formatDate(appointment.date)}</strong>
                   <span><Clock3 size={14} /> {appointment.time}</span>
                 </div>
                 <div className={styles.details}>
                   <div className={styles.titleLine}>
-                    <h3>{appointment.patient}</h3>
+                    {patient ? (
+                      <Link className={styles.personLink} to={`/pacientes/${patient.id}`}>{appointment.patient}</Link>
+                    ) : <h3>{appointment.patient}</h3>}
                     <StatusBadge tone={appointment.status === 'Confirmada' ? 'confirmed' : 'pending'}>
                       {appointment.status}
                     </StatusBadge>
                   </div>
-                  <p><Stethoscope size={15} /> {appointment.doctor} · {appointment.type}</p>
+                  <p><Stethoscope size={15} /> {doctorId ? <Link className={styles.personLink} to={`/medicos/${doctorId}`}>{appointment.doctor}</Link> : appointment.doctor} · {appointment.type}</p>
                   {appointment.notes && <small>{appointment.notes}</small>}
                 </div>
                 <button type="button" onClick={() => toggleStatus(appointment.id)}>
                   <CheckCircle2 size={17} />
                   {appointment.status === 'Confirmada' ? 'Marcar pendente' : 'Confirmar'}
                 </button>
-              </article>
-            ))}
+                </article>
+              )
+            })}
           </div>
         </article>
       </section>
