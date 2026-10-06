@@ -118,6 +118,7 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
+  flex-wrap: wrap;
   margin-top: 0.4rem;
   color: #526a80;
   font-size: 0.76rem;

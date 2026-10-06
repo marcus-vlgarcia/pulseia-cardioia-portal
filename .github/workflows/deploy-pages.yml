@@ -31,7 +31,11 @@ jobs:
       - name: Instalar dependências
         run: pnpm install --frozen-lockfile
       - name: Gerar versão de produção
+        env:
+          GITHUB_ACTIONS: 'true'
         run: pnpm build
+      - name: Verificar regras de autenticação e agenda
+        run: pnpm test
       - name: Preparar artefato do Pages
         uses: actions/upload-pages-artifact@v3
         with:

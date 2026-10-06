@@ -21,12 +21,16 @@ export default function Appointments() {
   const [patients, setPatients] = useState([])
   const [doctors, setDoctors] = useState([])
   const [filter, setFilter] = useState('todas')
+  const [error, setError] = useState('')
   const { appointments, toggleStatus } = useAppointments()
 
   useEffect(() => {
     const controller = new AbortController()
-    getPatients(controller.signal).then(setPatients).catch(() => {})
-    getDoctors(controller.signal).then(setDoctors).catch(() => {})
+    Promise.all([getPatients(controller.signal), getDoctors(controller.signal)])
+      .then(([patientData, doctorData]) => { setPatients(patientData); setDoctors(doctorData) })
+      .catch((requestError) => {
+        if (requestError.name !== 'AbortError') setError(requestError.message)
+      })
     return () => controller.abort()
   }, [])
 
@@ -45,6 +49,7 @@ export default function Appointments() {
       />
 
       <section className={styles.grid}>
+        {error && <div className="error-banner" role="alert">{error}</div>}
         <AppointmentForm patients={patients} doctors={doctors} />
 
         <article className={styles.agenda}>

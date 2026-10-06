@@ -7,6 +7,7 @@ import StatusBadge from '../components/StatusBadge'
 import { useAppointments } from '../contexts/AppointmentContext'
 import { useAuth } from '../contexts/AuthContext'
 import { getPatients } from '../services/patientService'
+import { isUpcoming } from '../services/appointmentService'
 import styles from './Dashboard.module.css'
 
 function firstName(name) {
@@ -33,7 +34,7 @@ export default function Dashboard() {
     alto: patients.filter((patient) => patient.risk === 'alto').length,
   }), [patients])
 
-  const sortedAppointments = [...appointments].sort((a, b) =>
+  const sortedAppointments = appointments.filter((appointment) => isUpcoming(appointment)).sort((a, b) =>
     `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`),
   )
   const patientIdsByName = new Map(patients.map((patient) => [patient.name, patient.id]))
@@ -88,11 +89,12 @@ export default function Dashboard() {
           </div>
 
           <div className={styles.appointmentList}>
+            {sortedAppointments.length === 0 && <p>Nenhuma consulta futura cadastrada. Use “Nova consulta” para começar.</p>}
             {sortedAppointments.slice(0, 4).map((appointment) => (
               <div className={styles.appointment} key={appointment.id}>
                 <div className={styles.dateTile}>
                   <strong>{appointment.date.slice(-2)}</strong>
-                  <span>SET</span>
+                  <span>{new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(new Date(`${appointment.date}T12:00:00`)).replace('.', '').toUpperCase()}</span>
                 </div>
                 <div className={styles.appointmentInfo}>
                   {patientIdsByName.has(appointment.patient) ? (

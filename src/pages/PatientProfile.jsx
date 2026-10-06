@@ -6,6 +6,7 @@ import StatusBadge from '../components/StatusBadge'
 import { useAppointments } from '../contexts/AppointmentContext'
 import { buildPatientProfile } from '../services/patientProfileService'
 import { getPatientById } from '../services/patientService'
+import { isUpcoming } from '../services/appointmentService'
 import styles from './PatientProfile.module.css'
 
 const riskTone = { baixo: 'low', moderado: 'moderate', alto: 'high' }
@@ -22,6 +23,8 @@ export default function PatientProfile() {
 
   useEffect(() => {
     const controller = new AbortController()
+    setError('')
+    setPatient(null)
     getPatientById(patientId, controller.signal)
       .then((patientData) => {
         if (!patientData) setError('Paciente não encontrado na base simulada.')
@@ -48,7 +51,7 @@ export default function PatientProfile() {
   }
 
   const profile = buildPatientProfile(patient)
-  const nextAppointment = patientAppointments.find((appointment) => appointment.date >= '2026-09-18') ?? patientAppointments[0]
+  const nextAppointment = patientAppointments.find((appointment) => isUpcoming(appointment))
 
   return (
     <div className="page-container">
@@ -97,6 +100,7 @@ export default function PatientProfile() {
             <div><span className={styles.timelineIcon}><CalendarDays size={17} /></span><p><strong>Próximo agendamento</strong>Nenhuma consulta simulada cadastrada para este perfil.</p></div>
           )}
         </div>
+        {patientAppointments.map((appointment) => <p key={appointment.id} className={styles.observation}>{formatDate(appointment.date)} · {appointment.time} · {appointment.type} · {appointment.status}</p>)}
         <Link className={styles.agendaLink} to="/agendamentos">Ver agenda completa</Link>
       </section>
     </div>

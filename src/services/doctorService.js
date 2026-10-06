@@ -6,7 +6,7 @@ const doctorIdsByName = {
 
 async function loadDoctors(signal) {
   await new Promise((resolve) => setTimeout(resolve, 220))
-  const response = await fetch('/data/doctors.json', { signal })
+  const response = await fetch(`${import.meta.env.BASE_URL}data/doctors.json`, { signal })
 
   if (!response.ok) {
     throw new Error('Não foi possível carregar os profissionais simulados.')

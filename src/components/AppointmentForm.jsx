@@ -1,6 +1,7 @@
 import { useReducer, useState } from 'react'
 import { CalendarPlus, CheckCircle2 } from 'lucide-react'
 import { useAppointments } from '../contexts/AppointmentContext'
+import { localDate } from '../services/appointmentService'
 import styles from './AppointmentForm.module.css'
 
 const initialForm = {
@@ -26,18 +27,26 @@ function formReducer(state, action) {
 export default function AppointmentForm({ patients, doctors = [] }) {
   const [form, dispatch] = useReducer(formReducer, initialForm)
   const [message, setMessage] = useState('')
+  const [error, setError] = useState('')
   const { addAppointment } = useAppointments()
 
   function updateField(event) {
     dispatch({ type: 'CHANGE', field: event.target.name, value: event.target.value })
     setMessage('')
+    setError('')
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-    addAppointment({ ...form, status: 'Pendente' })
-    dispatch({ type: 'RESET' })
-    setMessage('Consulta adicionada à agenda simulada.')
+    try {
+      addAppointment({ ...form, status: 'Pendente' })
+      dispatch({ type: 'RESET' })
+      setError('')
+      setMessage('Consulta adicionada à agenda simulada.')
+    } catch (submitError) {
+      setMessage('')
+      setError(submitError.message)
+    }
   }
 
   return (
@@ -71,7 +80,7 @@ export default function AppointmentForm({ patients, doctors = [] }) {
 
       <label>
         <span>Data</span>
-        <input name="date" type="date" value={form.date} onChange={updateField} required />
+        <input name="date" type="date" min={localDate()} value={form.date} onChange={updateField} required />
       </label>
 
       <label>
@@ -100,6 +109,7 @@ export default function AppointmentForm({ patients, doctors = [] }) {
         />
       </label>
 
+      {error && <p className="error-banner" role="alert">{error}</p>}
       {message && (
         <p className={styles.success} role="status">
           <CheckCircle2 size={18} />

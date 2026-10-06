@@ -139,37 +139,44 @@ segurança.
 
 ## 🔧 Como executar o projeto
 
-É necessário ter o [Node.js](https://nodejs.org/) instalado. Clone o repositório,
+É necessário ter o [Node.js](https://nodejs.org/) 20 ou superior e pnpm 10 instalado. Clone o repositório,
 acesse sua pasta e instale as dependências:
 
 ```bash
 git clone https://github.com/marcus-vlgarcia/pulseia-cardioia-portal.git
 cd pulseia-cardioia-portal
-npm install
+pnpm install --frozen-lockfile
 ```
 
 Inicie o ambiente de desenvolvimento:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Abra no navegador o endereço indicado pelo Vite. Para gerar e conferir a versão
 de produção:
 
 ```bash
-npm run build
-npm run preview
+pnpm test
+pnpm build
+pnpm preview
 ```
 
 ## 🌐 Links da entrega
 
 - [Repositório público no GitHub](https://github.com/marcus-vlgarcia/pulseia-cardioia-portal)
-- [Demonstração publicada do CardioIA](https://pulseia-cardioia-portal.marcusgarcia-cine.chatgpt.site)
+- [Versão anterior em Sites](https://pulseia-cardioia-portal.marcusgarcia-cine.chatgpt.site)
 - [Demonstração no GitHub Pages](https://marcus-vlgarcia.github.io/pulseia-cardioia-portal/)
 
-A demonstração publicada pode solicitar autenticação com a conta ChatGPT antes
-de exibir a tela de login fictícia do CardioIA.
+O GitHub Pages é o endereço principal da entrega e publica automaticamente a
+branch `main`. A navegação usa URLs com `#` para permitir atualização da página
+e acesso direto às fichas. Os serviços usam a base do Vite para carregar os JSONs
+corretamente em subdiretórios. A configuração de produção usa a base do
+repositório no GitHub Actions e a raiz nos demais ambientes.
+
+Use o GitHub Pages para a avaliação e o vídeo. O endereço em Sites é uma versão
+anterior; as correções de 06/10/2026 estão no GitHub Pages.
 
 ## 🎥 Vídeo de demonstração
 
@@ -177,6 +184,9 @@ de exibir a tela de login fictícia do CardioIA.
 YouTube como **não listado** e substituir o campo abaixo pelo endereço final.
 
 **Link do vídeo:** pendente.
+
+Veja o [roteiro de gravação](docs/ROTEIRO-VIDEO.md) e o
+[relatório de revisão](docs/REVISAO.md).
 
 ## 🔒 Dados, privacidade e limitações
 
@@ -197,6 +207,8 @@ interface com dados e autenticação simulados.
 
 - `1.0.0` — 16/09/2026: criação da interface responsiva, autenticação simulada,
   rotas protegidas, pacientes, agendamentos, dashboard e documentação da entrega.
+- `1.1.0` — 06/10/2026: revisão do GitHub Pages, sessão, persistência,
+  datas, conflitos de agenda, fichas e documentação de demonstração.
 
 ## 📋 Licença
 

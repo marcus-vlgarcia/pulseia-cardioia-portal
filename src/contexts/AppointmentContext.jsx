@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
+import { appointmentError, localDate, validStoredAppointment } from '../services/appointmentService'
 
 const STORAGE_KEY = 'cardioia.appointments'
 const initialAppointments = [
@@ -35,11 +36,18 @@ const initialAppointments = [
 ]
 
 function loadAppointments() {
+  const defaults = initialAppointments.map((appointment, index) => {
+    const date = new Date()
+    date.setDate(date.getDate() + index + 1)
+    return { ...appointment, date: localDate(date) }
+  })
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
-    return saved ? JSON.parse(saved) : initialAppointments
+    if (!saved) return defaults
+    const parsed = JSON.parse(saved)
+    return Array.isArray(parsed) && parsed.every(validStoredAppointment) ? parsed : defaults
   } catch {
-    return initialAppointments
+    return defaults
   }
 }
 
@@ -47,7 +55,6 @@ function appointmentReducer(state, action) {
   switch (action.type) {
     case 'ADD': {
       const next = [{ ...action.payload, id: action.payload.id ?? crypto.randomUUID() }, ...state]
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
       return next
     }
     case 'TOGGLE_STATUS': {
@@ -59,7 +66,6 @@ function appointmentReducer(state, action) {
             }
           : appointment,
       )
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
       return next
     }
     default:
@@ -76,11 +82,21 @@ export function AppointmentProvider({ children }) {
     loadAppointments,
   )
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appointments))
+    } catch {
+      console.warn('Agenda disponível nesta sessão; armazenamento local indisponível.')
+    }
+  }, [appointments])
+
   const addAppointment = useCallback((appointment) => {
+    const error = appointmentError(appointment, appointments)
+    if (error) throw new Error(error)
     const nextAppointment = { ...appointment, id: appointment.id ?? crypto.randomUUID() }
     dispatch({ type: 'ADD', payload: nextAppointment })
     return nextAppointment
-  }, [])
+  }, [appointments])
 
   useEffect(() => {
     const context = document.modelContext

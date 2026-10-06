@@ -26,7 +26,7 @@ export default function Patients() {
       .catch((requestError) => {
         if (requestError.name !== 'AbortError') setError(requestError.message)
       })
-      .finally(() => setLoading(false))
+      .finally(() => { if (!controller.signal.aborted) setLoading(false) })
     return () => controller.abort()
   }, [])
 
@@ -51,6 +51,7 @@ export default function Patients() {
 
       <section className={styles.controls} aria-label="Filtros da lista">
         <label className={styles.search}>
+          <span className="sr-only">Buscar pacientes por nome ou condição</span>
           <Search size={19} aria-hidden="true" />
           <input
             type="search"

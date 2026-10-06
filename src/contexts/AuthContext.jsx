@@ -1,10 +1,27 @@
-import { createContext, useContext, useMemo, useState } from 'react'
-import { authenticate, clearSession, restoreSession } from '../services/authService'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { authenticate, clearSession, restoreSession, tokenExpiration } from '../services/authService'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(() => restoreSession())
+
+  useEffect(() => {
+    function checkSession() {
+      setSession(restoreSession())
+    }
+    window.addEventListener('storage', checkSession)
+    window.addEventListener('focus', checkSession)
+    const timeout = session ? window.setTimeout(() => {
+      clearSession()
+      setSession(null)
+    }, Math.max(0, tokenExpiration(session.token) - Date.now())) : null
+    return () => {
+      window.removeEventListener('storage', checkSession)
+      window.removeEventListener('focus', checkSession)
+      if (timeout !== null) window.clearTimeout(timeout)
+    }
+  }, [session])
 
   async function login(email, password) {
     const nextSession = await authenticate(email, password)

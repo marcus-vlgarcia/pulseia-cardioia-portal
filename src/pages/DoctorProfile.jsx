@@ -12,6 +12,8 @@ export default function DoctorProfile() {
 
   useEffect(() => {
     const controller = new AbortController()
+    setError('')
+    setDoctor(null)
     getDoctorById(doctorId, controller.signal)
       .then((doctorData) => {
         if (!doctorData) setError('Profissional não encontrado na base simulada.')

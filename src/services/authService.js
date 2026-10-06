@@ -1,44 +1,63 @@
 const TOKEN_KEY = 'cardioia.fakeToken'
 const USER_KEY = 'cardioia.user'
 
+function encodeSegment(value) {
+  const bytes = new TextEncoder().encode(JSON.stringify(value))
+  return btoa(String.fromCharCode(...bytes)).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '')
+}
+
+export function tokenExpiration(token) {
+  try {
+    const segment = token.split('.')[1].replaceAll('-', '+').replaceAll('_', '/')
+    const bytes = Uint8Array.from(atob(segment), (character) => character.charCodeAt(0))
+    return JSON.parse(new TextDecoder().decode(bytes)).exp * 1000
+  } catch {
+    return 0
+  }
+}
+
 function createFakeToken(email) {
   const payload = {
     sub: email,
     role: 'cardiologia',
-    exp: Date.now() + 8 * 60 * 60 * 1000,
+    exp: Math.floor(Date.now() / 1000) + 8 * 60 * 60,
   }
 
-  return `cardioia.${btoa(JSON.stringify(payload))}.assinatura-simulada`
+  return `${encodeSegment({ alg: 'none', typ: 'JWT' })}.${encodeSegment(payload)}.assinatura-simulada`
 }
 
 function tokenIsValid(token) {
   if (!token) return false
 
   try {
-    const payload = JSON.parse(atob(token.split('.')[1]))
-    return payload.exp > Date.now()
+    return tokenExpiration(token) > Date.now()
   } catch {
     return false
   }
 }
 
 export function restoreSession() {
-  const token = localStorage.getItem(TOKEN_KEY)
-  const rawUser = localStorage.getItem(USER_KEY)
-
-  if (!tokenIsValid(token) || !rawUser) {
-    localStorage.removeItem(TOKEN_KEY)
-    localStorage.removeItem(USER_KEY)
+  try {
+    const token = localStorage.getItem(TOKEN_KEY)
+    const rawUser = localStorage.getItem(USER_KEY)
+    const user = rawUser ? JSON.parse(rawUser) : null
+    if (!tokenIsValid(token) || !user || typeof user.name !== 'string' ||
+        typeof user.email !== 'string' || typeof user.role !== 'string') {
+      clearSession()
+      return null
+    }
+    return { token, user }
+  } catch {
+    clearSession()
     return null
   }
-
-  return { token, user: JSON.parse(rawUser) }
 }
 
 export async function authenticate(email, password) {
   await new Promise((resolve) => setTimeout(resolve, 650))
 
-  if (!email.includes('@') || password.length < 4) {
+  email = email.trim().toLowerCase()
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || password.length < 4) {
     throw new Error('Informe um e-mail válido e uma senha com pelo menos 4 caracteres.')
   }
 
@@ -55,6 +74,10 @@ export async function authenticate(email, password) {
 }
 
 export function clearSession() {
-  localStorage.removeItem(TOKEN_KEY)
-  localStorage.removeItem(USER_KEY)
+  try {
+    localStorage.removeItem(TOKEN_KEY)
+    localStorage.removeItem(USER_KEY)
+  } catch {
+    // Logout remains available even when the browser blocks storage.
+  }
 }

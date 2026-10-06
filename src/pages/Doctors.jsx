@@ -38,12 +38,12 @@ export default function Doctors() {
               <span className={styles.avatar}>{doctor.initials}</span>
               <span className={styles.availability}>{doctor.availability}</span>
             </div>
-            <h2>{doctor.name}</h2>
+            <h2><Link to={`/medicos/${doctor.id}`}>{doctor.name}</Link></h2>
             <p className={styles.specialty}><Stethoscope size={16} /> {doctor.specialty}</p>
             <p className={styles.role}>{doctor.role}</p>
             <div className={styles.hours}>
               <Clock3 size={17} />
-              <span><strong>Próximo período</strong>{doctor.schedule[0].day} · {doctor.schedule[0].hours}</span>
+              <span><strong>Período de atendimento</strong>{doctor.schedule[0].day} · {doctor.schedule[0].hours}</span>
             </div>
             <Link className={styles.detailLink} to={`/medicos/${doctor.id}`}>
               Ver ficha profissional <ArrowUpRight size={17} />

@@ -59,7 +59,7 @@ export default function Login() {
       <section className={styles.access}>
         <div className={styles.formCard}>
           <span className={styles.lock}><LockKeyhole size={22} /></span>
-          <span className={styles.formKicker}>Acesso seguro</span>
+          <span className={styles.formKicker}>Acesso simulado</span>
           <h2>Entrar no CardioIA</h2>
           <p>Use as credenciais demonstrativas para acessar o portal.</p>
 
