@@ -14,7 +14,7 @@ export default function Login() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  if (isAuthenticated) return <Navigate to="/" replace />
+  if (isAuthenticated) return <Navigate to={location.state?.from?.pathname || '/'} replace />
 
   async function handleSubmit(event) {
     event.preventDefault()
