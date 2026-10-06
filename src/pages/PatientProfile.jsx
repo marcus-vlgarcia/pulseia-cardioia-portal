@@ -7,6 +7,7 @@ import { useAppointments } from '../contexts/AppointmentContext'
 import { buildPatientProfile } from '../services/patientProfileService'
 import { getPatientById } from '../services/patientService'
 import { isUpcoming } from '../services/appointmentService'
+import { getDoctorIdByName } from '../services/doctorService'
 import styles from './PatientProfile.module.css'
 
 const riskTone = { baixo: 'low', moderado: 'moderate', alto: 'high' }
@@ -95,9 +96,9 @@ export default function PatientProfile() {
         <div className={styles.timeline}>
           <div><span className={styles.timelineIcon}><Activity size={17} /></span><p><strong>Última consulta registrada</strong>{formatDate(patient.lastVisit)} · {patient.condition}</p></div>
           {nextAppointment ? (
-            <div><span className={styles.timelineIcon}><CalendarDays size={17} /></span><p><strong>Próximo agendamento no portal</strong>{formatDate(nextAppointment.date)} às {nextAppointment.time} · {nextAppointment.doctor}</p></div>
+            <div><span className={styles.timelineIcon}><CalendarDays size={17} /></span><p><strong>Próximo agendamento no portal</strong>{formatDate(nextAppointment.date)} às {nextAppointment.time} · {getDoctorIdByName(nextAppointment.doctor) ? <Link to={`/medicos/${getDoctorIdByName(nextAppointment.doctor)}`}>{nextAppointment.doctor}</Link> : nextAppointment.doctor}</p></div>
           ) : (
-            <div><span className={styles.timelineIcon}><CalendarDays size={17} /></span><p><strong>Próximo agendamento</strong>Nenhuma consulta simulada cadastrada para este perfil.</p></div>
+            <div><span className={styles.timelineIcon}><CalendarDays size={17} /></span><p><strong>Próximo agendamento</strong>Nenhuma consulta futura cadastrada para este perfil.</p></div>
           )}
         </div>
         {patientAppointments.map((appointment) => <p key={appointment.id} className={styles.observation}>{formatDate(appointment.date)} · {appointment.time} · {appointment.type} · {appointment.status}</p>)}

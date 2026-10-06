@@ -31,5 +31,6 @@ export function validStoredAppointment(item) {
     ['Pendente', 'Confirmada'].includes(item.status) &&
     /^\d{4}-\d{2}-\d{2}$/.test(item.date) &&
     /^([01]\d|2[0-3]):[0-5]\d$/.test(item.time) &&
-    !Number.isNaN(new Date(`${item.date}T${item.time}:00`).getTime())
+    !Number.isNaN(new Date(`${item.date}T${item.time}:00`).getTime()) &&
+    localDate(new Date(`${item.date}T${item.time}:00`)) === item.date
 }

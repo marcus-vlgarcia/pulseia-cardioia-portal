@@ -40,5 +40,8 @@ test('login, restauração, dados inválidos, expiração e logout simulados', a
   clearSession()
   assert.equal(restoreSession(), null)
   assert.equal(tokenExpiration('invalid'), 0)
+  values.set('cardioia.fakeToken', `header.${btoa(JSON.stringify({ exp: 1 }))}.fake`)
+  values.set('cardioia.user', JSON.stringify(session.user))
+  assert.equal(restoreSession(), null)
   await assert.rejects(authenticate('invalid', '1234'), /e-mail válido/)
 })
