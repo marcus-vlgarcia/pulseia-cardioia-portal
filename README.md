@@ -166,6 +166,7 @@ npm run preview
 
 - [Repositório público no GitHub](https://github.com/marcus-vlgarcia/pulseia-cardioia-portal)
 - [Demonstração publicada do CardioIA](https://pulseia-cardioia-portal.marcusgarcia-cine.chatgpt.site)
+- [Demonstração no GitHub Pages](https://marcus-vlgarcia.github.io/pulseia-cardioia-portal/)
 
 A demonstração publicada pode solicitar autenticação com a conta ChatGPT antes
 de exibir a tela de login fictícia do CardioIA.
