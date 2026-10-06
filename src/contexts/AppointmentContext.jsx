@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from 'react'
 import { appointmentError, localDate, validStoredAppointment } from '../services/appointmentService'
+import { useAuth } from './AuthContext'
 
 const STORAGE_KEY = 'cardioia.appointments'
 const initialAppointments = [
@@ -76,6 +77,7 @@ function appointmentReducer(state, action) {
 const AppointmentContext = createContext(null)
 
 export function AppointmentProvider({ children }) {
+  const { isAuthenticated } = useAuth()
   const [appointments, dispatch] = useReducer(
     appointmentReducer,
     undefined,
@@ -91,16 +93,17 @@ export function AppointmentProvider({ children }) {
   }, [appointments])
 
   const addAppointment = useCallback((appointment) => {
+    if (!isAuthenticated) throw new Error('Entre no portal para agendar uma consulta.')
     const error = appointmentError(appointment, appointments)
     if (error) throw new Error(error)
     const nextAppointment = { ...appointment, id: appointment.id ?? crypto.randomUUID() }
     dispatch({ type: 'ADD', payload: nextAppointment })
     return nextAppointment
-  }, [appointments])
+  }, [appointments, isAuthenticated])
 
   useEffect(() => {
     const context = document.modelContext
-    if (!context?.registerTool) return undefined
+    if (!isAuthenticated || !context?.registerTool) return undefined
 
     const lifecycle = new AbortController()
     const registration = context.registerTool(
@@ -153,7 +156,7 @@ export function AppointmentProvider({ children }) {
     })
 
     return () => lifecycle.abort()
-  }, [addAppointment])
+  }, [addAppointment, isAuthenticated])
 
   const value = useMemo(
     () => ({

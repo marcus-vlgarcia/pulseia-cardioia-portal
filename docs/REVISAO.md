@@ -42,6 +42,7 @@ Data: 06/10/2026.
 - Recuperação segura de sessão/agenda com armazenamento inválido.
 - JWT fictício com segmentos base64url e expiração em segundos; logout automático por expiração.
 - Sincronização de sessão entre abas e ao retornar ao portal.
+- Retorno à rota solicitada após login e ferramenta WebMCP disponível somente com sessão autenticada.
 - Fichas reinicializadas ao mudar de registro e histórico listado por paciente.
 - Melhoradas mensagens, nome clicável dos médicos, rótulo acessível da busca e quebra de linha da agenda.
 - Testes automatizados para autenticação e regras da agenda, também executados na publicação.
@@ -63,3 +64,12 @@ O link principal de entrega é
 https://marcus-vlgarcia.github.io/pulseia-cardioia-portal/.
 A revisão de 06/10 foi destinada ao GitHub Pages. A publicação anterior em Sites
 é uma versão histórica e não deve ser usada para apresentar esta revisão.
+
+## Verificação
+
+Os testes automatizados de autenticação, armazenamento inválido, datas e
+conflitos passaram. O build e a publicação pelo GitHub Actions passaram.
+Na versão publicada, foram conferidos pesquisa e ficha de paciente, perfil e
+horários de médico, proteção de rota, login e retorno à ficha, criação e
+confirmação de consulta, persistência após recarregar e atualização do contador.
+Dashboard, menu e ficha de paciente foram conferidos em tela de 390 px.
