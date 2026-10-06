@@ -185,8 +185,7 @@ YouTube como **não listado** e substituir o campo abaixo pelo endereço final.
 
 **Link do vídeo:** pendente.
 
-Veja o [roteiro de gravação](docs/ROTEIRO-VIDEO.md) e o
-[relatório de revisão](docs/REVISAO.md).
+Veja o [relatório de revisão](docs/REVISAO.md).
 
 ## 🔒 Dados, privacidade e limitações
 

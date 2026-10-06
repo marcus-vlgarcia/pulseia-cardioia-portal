@@ -46,7 +46,7 @@ Data: 06/10/2026.
 - Fichas reinicializadas ao mudar de registro e histórico listado por paciente.
 - Melhoradas mensagens, nome clicável dos médicos, rótulo acessível da busca e quebra de linha da agenda.
 - Testes automatizados para autenticação e regras da agenda, também executados na publicação.
-- README atualizado e roteiro de demonstração adicionado.
+- README e relatório de revisão atualizados.
 
 ## Limitações intencionais
 
