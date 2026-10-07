@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Search, SlidersHorizontal, UserRound } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import StatusBadge from '../components/StatusBadge'
 import { getPatients } from '../services/patientService'
@@ -15,9 +15,10 @@ function formatDate(date) {
 export default function Patients() {
   const [patients, setPatients] = useState([])
   const [search, setSearch] = useState('')
-  const [risk, setRisk] = useState('todos')
+  const [searchParams, setSearchParams] = useSearchParams()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const risk = searchParams.get('risco') === 'alto' ? 'alto' : 'todos'
 
   useEffect(() => {
     const controller = new AbortController()
@@ -62,7 +63,10 @@ export default function Patients() {
         </label>
         <label className={styles.filter}>
           <SlidersHorizontal size={18} aria-hidden="true" />
-          <select value={risk} onChange={(event) => setRisk(event.target.value)}>
+          <select value={risk} onChange={(event) => {
+            const nextRisk = event.target.value
+            setSearchParams(nextRisk === 'todos' ? {} : { risco: nextRisk })
+          }}>
             <option value="todos">Todos os riscos</option>
             <option value="baixo">Risco baixo</option>
             <option value="moderado">Risco moderado</option>

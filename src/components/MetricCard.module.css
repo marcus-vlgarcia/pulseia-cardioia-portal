@@ -9,6 +9,19 @@
   box-shadow: var(--shadow-sm);
 }
 
+.interactive {
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.interactive:hover {
+  border-color: var(--teal);
+  box-shadow: 0 .8rem 1.8rem rgba(28, 52, 72, .12);
+  transform: translateY(-3px);
+}
+
+.interactive:hover .arrow { color: var(--teal-dark); transform: translate(2px, -2px); }
+
 .topline {
   display: flex;
   align-items: center;
@@ -26,6 +39,7 @@
 
 .arrow {
   color: var(--muted);
+  transition: 160ms ease;
 }
 
 .card strong {

@@ -61,6 +61,7 @@ export default function Dashboard() {
           value={patients.length || '—'}
           detail="Registros demonstrativos"
           tone="mint"
+          to="/pacientes"
         />
         <MetricCard
           icon={CalendarDays}
@@ -68,6 +69,7 @@ export default function Dashboard() {
           value={appointments.length}
           detail="Na agenda simulada"
           tone="blue"
+          to="/agendamentos"
         />
         <MetricCard
           icon={HeartPulse}
@@ -75,6 +77,7 @@ export default function Dashboard() {
           value={riskSummary.alto || '—'}
           detail="Perfis de risco alto"
           tone="coral"
+          to="/pacientes?risco=alto"
         />
       </section>
 
