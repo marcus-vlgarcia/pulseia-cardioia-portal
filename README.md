@@ -72,6 +72,7 @@ A interface possui quatro áreas protegidas:
 - filtro de pacientes por risco baixo, moderado ou alto;
 - fichas individuais de pacientes com dados cadastrais e histórico simulado;
 - fichas profissionais com horários, especialidades e tipos de atendimento simulados;
+- agenda por profissional, com próximas consultas e pacientes vinculados no navegador;
 - formulário de agendamento controlado com `useReducer`;
 - agenda compartilhada por Context API;
 - persistência local dos agendamentos;

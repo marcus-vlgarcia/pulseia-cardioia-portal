@@ -23,6 +23,20 @@
 .contactCard span, .contactCard strong { display: block; }
 .contactCard span { min-width: 0; color: var(--muted); font-size: .73rem; overflow-wrap: anywhere; }
 .contactCard strong { margin-bottom: .2rem; color: var(--navy); font-size: .68rem; }
+.agendaCard, .patientCard { margin-top: 1rem; padding: 1.3rem; border: 1px solid var(--line); border-radius: var(--radius-xl); background: white; box-shadow: var(--shadow-sm); }
+.agendaHeader { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.agendaHeader > span { color: var(--muted); font-size: .72rem; font-weight: 700; }
+.appointmentList { margin-top: .9rem; }
+.appointment { display: grid; grid-template-columns: 6rem minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding: .9rem 0; border-top: 1px solid var(--line); }
+.appointmentDate strong, .appointmentDate span, .appointmentType { display: block; }
+.appointmentDate strong { color: var(--navy); font-size: .77rem; text-transform: capitalize; }
+.appointmentDate span { margin-top: .18rem; color: var(--teal-dark); font-size: .75rem; font-weight: 800; }
+.patientLink { color: var(--navy); font-size: .82rem; font-weight: 800; }
+.patientLink:hover, .patientList a:hover { color: var(--teal-dark); text-decoration: underline; }
+.appointmentType { margin-top: .2rem; color: var(--muted); font-size: .72rem; }
+.emptyAgenda { margin: 1rem 0 0; color: var(--muted); font-size: .78rem; }
+.patientList { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.patientList a, .patientList span { padding: .48rem .65rem; color: #436076; border-radius: .65rem; background: #f1f6f8; font-size: .74rem; font-weight: 700; }
 .loading { min-height: 18rem; display: grid; place-items: center; color: var(--muted); }
 @media (max-width: 900px) { .contactCard { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .hero, .grid { grid-template-columns: 1fr; } .crm { justify-self: start; } .contactCard { grid-template-columns: 1fr; } .schedule > div { display: grid; gap: .2rem; } .schedule span { text-align: left; } }
+@media (max-width: 640px) { .hero, .grid { grid-template-columns: 1fr; } .crm { justify-self: start; } .contactCard { grid-template-columns: 1fr; } .schedule > div { display: grid; gap: .2rem; } .schedule span { text-align: left; } .agendaHeader { align-items: flex-start; flex-direction: column; gap: .35rem; } .appointment { grid-template-columns: 1fr auto; } .appointmentDate { grid-column: 1 / -1; } }
