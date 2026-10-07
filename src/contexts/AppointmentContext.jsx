@@ -101,63 +101,6 @@ export function AppointmentProvider({ children }) {
     return nextAppointment
   }, [appointments, isAuthenticated])
 
-  useEffect(() => {
-    const context = document.modelContext
-    if (!isAuthenticated || !context?.registerTool) return undefined
-
-    const lifecycle = new AbortController()
-    const registration = context.registerTool(
-      {
-        name: 'create_appointment',
-        title: 'Agendar consulta no CardioIA',
-        description: 'Cria um agendamento simulado e o inclui na agenda visível do portal.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            patient: { type: 'string', minLength: 2 },
-            date: { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$' },
-            time: { type: 'string', pattern: '^\\d{2}:\\d{2}$' },
-            doctor: { type: 'string' },
-            type: { type: 'string' },
-            notes: { type: 'string' },
-          },
-          required: ['patient', 'date', 'time'],
-          additionalProperties: false,
-        },
-        annotations: { readOnlyHint: false, untrustedContentHint: false },
-        execute(input) {
-          if (
-            !input ||
-            typeof input.patient !== 'string' ||
-            !/^\d{4}-\d{2}-\d{2}$/.test(input.date) ||
-            !/^\d{2}:\d{2}$/.test(input.time)
-          ) {
-            throw new Error('Paciente, data e horário válidos são obrigatórios.')
-          }
-
-          const appointment = addAppointment({
-            patient: input.patient.trim(),
-            date: input.date,
-            time: input.time,
-            doctor: input.doctor?.trim() || 'Dra. Marina Alves',
-            type: input.type?.trim() || 'Avaliação cardiológica',
-            notes: input.notes?.trim() || '',
-            status: 'Pendente',
-          })
-
-          return { id: appointment.id, status: appointment.status }
-        },
-      },
-      { signal: lifecycle.signal },
-    )
-
-    void Promise.resolve(registration).catch((error) => {
-      console.warn('Não foi possível registrar a ferramenta do portal.', error)
-    })
-
-    return () => lifecycle.abort()
-  }, [addAppointment, isAuthenticated])
-
   const value = useMemo(
     () => ({
       appointments,

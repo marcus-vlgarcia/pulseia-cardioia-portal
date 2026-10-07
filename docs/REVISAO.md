@@ -1,75 +1,33 @@
-# Revisão do Ir Além 1 — CardioIA / PulseIA
+# Checklist da entrega — CardioIA / PulseIA
 
-Data: 06/10/2026.
+## Requisitos do Ir Além 1
 
-## Checklist do enunciado
-
-| Solicitação | Situação |
+| Requisito | Implementação |
 | --- | --- |
-| Aplicação React + Vite, somente front-end | Concluído |
-| Autenticação simulada por Context API e JWT fake no localStorage | Concluído |
-| Proteção das rotas com AuthContext | Concluído, inclusive fichas individuais |
-| Pacientes via base simulada | Concluído; 12 registros em JSON local |
-| Agendamento com useState e useReducer | Concluído |
-| Dashboard com pacientes e consultas | Concluído |
-| Hooks useState, useEffect e useContext | Concluído |
-| Componentização e pastas contexts, components, services, pages | Concluído em src/ |
-| CSS Modules e layout responsivo | Concluído |
-| Repositório público nome-do-grupo-cardioia-portal | Concluído: pulseia-cardioia-portal |
-| README com instalação e execução | Concluído, com padrão FIAP |
-| Nome completo e RM dos integrantes | Concluído |
-| Vídeo de até 4 minutos no YouTube, não listado, com link no README | Pendente: gravação, publicação e inclusão do link |
+| Portal em React + Vite, somente front-end | Aplicação responsiva publicada no GitHub Pages |
+| Autenticação simulada | Context API e token JWT fictício no `localStorage` |
+| Proteção de rotas | Acesso às páginas internas condicionado ao login |
+| Pacientes com dados simulados | Base JSON local carregada por serviço |
+| Formulário de agendamento | `useState` e `useReducer` para interação e estado |
+| Dashboard | Contagem de pacientes, consultas e perfis prioritários |
+| Hooks e Context API | `useState`, `useEffect`, `useContext`, `useReducer` e `useMemo` |
+| Componentização | Pastas `src/contexts`, `src/components`, `src/services` e `src/pages` |
+| Estilização | CSS Modules e layout adaptado a telas menores |
+| Repositório público | [pulseia-cardioia-portal](https://github.com/marcus-vlgarcia/pulseia-cardioia-portal) |
+| README | Instruções de instalação, execução e acesso |
+| Integrantes | Nomes completos e RMs informados no README |
+| Vídeo de até 4 minutos | [Demonstração no YouTube](https://youtu.be/fJxvZkfVXq4), com link no README |
 
-## Complementos concluídos
+## Recursos adicionais
 
-- Busca por nome ou condição e filtro de risco.
-- Fichas de pacientes com identificação, contatos fictícios, contexto de acompanhamento e consultas cadastradas.
-- Área de médicos com três perfis fictícios, especialidades, contatos, tipos de consulta e horários demonstrativos.
-- Nomes clicáveis na listagem de pacientes, no dashboard, na listagem de médicos e na agenda.
-- Persistência da agenda no navegador e alteração de status pendente/confirmada.
-- Publicação gratuita pelo GitHub Pages e atualização automática pela branch main.
-- Estados de erro/carregamento, página de rota inexistente e indicadores de risco simulados.
-- Ferramenta opcional WebMCP para agendamentos quando suportada pelo navegador.
+- Busca e filtro de pacientes por condição e risco.
+- Fichas individuais de pacientes e médicos, com dados fictícios.
+- Agenda de cada médico com consultas futuras e pacientes vinculados.
+- Indicadores do dashboard clicáveis, incluindo atalho para pacientes de risco alto.
+- Nomes clicáveis entre agenda, dashboard e fichas.
+- Persistência local das consultas, confirmação de status e validação de conflitos de horário.
+- Estados de carregamento, erro e lista vazia.
 
-## Correções desta revisão
-
-- Corrigidos caminhos dos JSONs: respeitam o subdiretório do GitHub Pages.
-- Base de produção condicionada ao GitHub Actions, preservando execução na raiz em outros ambientes.
-- Removidos mês fixo e referências a consultas passadas como próximas.
-- Datas iniciais demonstrativas relativas ao momento da primeira utilização.
-- Validação de data real, horário, passado e conflitos de paciente ou médico no mesmo horário.
-- Reducer da agenda sem gravações: persistência feita em useEffect.
-- Recuperação segura de sessão/agenda com armazenamento inválido.
-- JWT fictício com segmentos base64url e expiração em segundos; logout automático por expiração.
-- Sincronização de sessão entre abas e ao retornar ao portal.
-- Retorno à rota solicitada após login e ferramenta WebMCP disponível somente com sessão autenticada.
-- Fichas reinicializadas ao mudar de registro e histórico listado por paciente.
-- Melhoradas mensagens, nome clicável dos médicos, rótulo acessível da busca e quebra de linha da agenda.
-- Testes automatizados para autenticação e regras da agenda, também executados na publicação.
-- README e relatório de revisão atualizados.
-
-## Limitações intencionais
-
-Os dados e perfis são fictícios. Não há back-end, autenticação de produção,
-diagnóstico, modelo de IA, prontuário real ou armazenamento compartilhado entre
-dispositivos. Os horários dos médicos são informativos; não constituem regra de
-disponibilidade do formulário. O histórico de consultas é demonstrativo e o
-status confirma o agendamento, não a realização de um atendimento.
-
-Dados salvos anteriormente são preservados quando válidos. Se uma agenda antiga
-contém somente consultas passadas, o dashboard informa que não há consultas
-futuras; é possível cadastrar uma nova.
-
-O link principal de entrega é
-https://marcus-vlgarcia.github.io/pulseia-cardioia-portal/.
-A revisão de 06/10 foi destinada ao GitHub Pages. A publicação anterior em Sites
-é uma versão histórica e não deve ser usada para apresentar esta revisão.
-
-## Verificação
-
-Os testes automatizados de autenticação, armazenamento inválido, datas e
-conflitos passaram. O build e a publicação pelo GitHub Actions passaram.
-Na versão publicada, foram conferidos pesquisa e ficha de paciente, perfil e
-horários de médico, proteção de rota, login e retorno à ficha, criação e
-confirmação de consulta, persistência após recarregar e atualização do contador.
-Dashboard, menu e ficha de paciente foram conferidos em tela de 390 px.
+Todos os nomes, contatos e dados clínicos são fictícios. A aplicação não realiza
+diagnóstico nem se conecta a um back-end. A agenda é salva apenas no navegador
+usado para a demonstração.

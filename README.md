@@ -27,7 +27,7 @@ acadêmico e não realiza diagnóstico médico.
 | Dashboard | Contagem de pacientes, consultas e perfis prioritários com indicadores clicáveis |
 | Estilização | CSS Modules, design responsivo e componentes reutilizáveis |
 | Instruções de execução | Documentadas neste README |
-| Vídeo de demonstração | Publicação não listada no YouTube pendente |
+| Vídeo de demonstração | [Disponível no YouTube](https://youtu.be/fJxvZkfVXq4) |
 
 ## Grupo - PulseIA
 
@@ -179,7 +179,8 @@ repositório no GitHub Actions e a raiz nos demais ambientes.
 
 **Vídeo de demonstração:** [assistir no YouTube](https://youtu.be/fJxvZkfVXq4)
 
-Veja o [relatório de revisão](docs/REVISAO.md).
+O [checklist da entrega](docs/REVISAO.md) reúne os requisitos do enunciado e
+os recursos adicionais do portal.
 
 ## 🔒 Dados, privacidade e limitações
 
