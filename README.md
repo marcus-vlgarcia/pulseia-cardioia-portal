@@ -24,7 +24,7 @@ acadêmico e não realiza diagnóstico médico.
 | Listagem e fichas de pacientes | Serviço que consome a base JSON local simulada |
 | Corpo clínico | Lista de médicos fictícios, fichas e horários demonstrativos |
 | Formulário de consultas | Estado controlado com `useReducer` e `useState` |
-| Dashboard | Contagem de pacientes, consultas e perfis prioritários |
+| Dashboard | Contagem de pacientes, consultas e perfis prioritários com indicadores clicáveis |
 | Estilização | CSS Modules, design responsivo e componentes reutilizáveis |
 | Instruções de execução | Documentadas neste README |
 | Vídeo de demonstração | Publicação não listada no YouTube pendente |
@@ -66,7 +66,7 @@ A interface possui quatro áreas protegidas:
 
 - login simulado com token JWT fictício no `localStorage`;
 - redirecionamento de visitantes não autenticados para a tela de acesso;
-- dashboard com indicadores atualizados a partir do estado da aplicação;
+- dashboard com indicadores atualizados a partir do estado da aplicação e atalhos para pacientes, agenda e perfis prioritários;
 - carregamento assíncrono dos pacientes com `useEffect`;
 - busca por nome ou condição acompanhada;
 - filtro de pacientes por risco baixo, moderado ou alto;
@@ -205,6 +205,8 @@ interface com dados e autenticação simulados.
   rotas protegidas, pacientes, agendamentos, dashboard e documentação da entrega.
 - `1.1.0` — 06/10/2026: revisão do GitHub Pages, sessão, persistência,
   datas, conflitos de agenda, fichas e documentação de demonstração.
+- `1.2.0` — 07/10/2026: agenda nas fichas de médicos e indicadores clicáveis
+  no dashboard.
 
 ## 📋 Licença
 
