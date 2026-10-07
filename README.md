@@ -177,10 +177,7 @@ repositório no GitHub Actions e a raiz nos demais ambientes.
 
 ## 🎥 Vídeo de demonstração
 
-**Pendente para a entrega:** gravar um vídeo de até 4 minutos, publicá-lo no
-YouTube como **não listado** e substituir o campo abaixo pelo endereço final.
-
-**Link do vídeo:** pendente.
+**Vídeo de demonstração:** [assistir no YouTube](https://youtu.be/fJxvZkfVXq4)
 
 Veja o [relatório de revisão](docs/REVISAO.md).
 
