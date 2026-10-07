@@ -166,7 +166,6 @@ pnpm preview
 ## 🌐 Links da entrega
 
 - [Repositório público no GitHub](https://github.com/marcus-vlgarcia/pulseia-cardioia-portal)
-- [Versão anterior em Sites](https://pulseia-cardioia-portal.marcusgarcia-cine.chatgpt.site)
 - [Demonstração no GitHub Pages](https://marcus-vlgarcia.github.io/pulseia-cardioia-portal/)
 
 O GitHub Pages é o endereço principal da entrega e publica automaticamente a
@@ -174,9 +173,6 @@ branch `main`. A navegação usa URLs com `#` para permitir atualização da pá
 e acesso direto às fichas. Os serviços usam a base do Vite para carregar os JSONs
 corretamente em subdiretórios. A configuração de produção usa a base do
 repositório no GitHub Actions e a raiz nos demais ambientes.
-
-Use o GitHub Pages para a avaliação e o vídeo. O endereço em Sites é uma versão
-anterior; as correções de 06/10/2026 estão no GitHub Pages.
 
 ## 🎥 Vídeo de demonstração
 
